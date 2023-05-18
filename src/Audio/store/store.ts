@@ -10,7 +10,6 @@ class Audio {
 	durationAll = 0;
 
 	calcDuration(sec: number, href: string) {
-		console.log(sec, this.durationPrevHear);
 		if (this.nameAudio === href) return Math.floor((sec - this.durationPrevHear) / 1000);
 		return Math.floor(sec / 1000);
 	}
