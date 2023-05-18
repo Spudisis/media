@@ -1,0 +1,42 @@
+.list {
+	position: absolute;
+	bottom: 0px;
+	transform: translate(0, calc(100% + 15px));
+	left: 0px;
+	padding: 0px;
+	list-style-type: none;
+	width: 100%;
+	z-index: 100;
+	border-top: 1px solid #00000033;
+	background-color: white;
+}
+
+.itemList {
+	padding: 12px 8px;
+	box-sizing: border-box;
+}
+
+.itemList:not(:last-child) .buttonSearch {
+	border-bottom: 1px solid #0000001a;
+}
+.buttonSearch {
+	text-align: left;
+	color: #a4a3a4;
+	font-size: 20px;
+	line-height: 28px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+	border: 0px;
+	outline: none;
+	background-color: inherit;
+	cursor: pointer;
+}
+
+@media screen and (hover: hover) {
+	.buttonSearch:hover {
+		transition: 0.2s ease;
+		color: black;
+	}
+}

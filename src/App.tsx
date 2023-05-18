@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
+import { Form } from "./Form";
+import { Audio } from "./Audio";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [errStatus, setErrStatus] = React.useState(false);
+	const [value, setValue] = React.useState("");
+	const [statusAudio, setStatusAudio] = React.useState(false);
+
+	React.useEffect(() => {
+		setErrStatus(false);
+	}, [value]);
+
+	return (
+		<>
+			{!statusAudio ? (
+				<Form
+					setStatusAudio={setStatusAudio}
+					value={value}
+					setValue={setValue}
+					setErrStatus={setErrStatus}
+					errStatus={errStatus}
+				/>
+			) : (
+				<Audio setStatusAudio={setStatusAudio} href={value} setErrStatus={setErrStatus} />
+			)}
+		</>
+	);
 }
 
 export default App;

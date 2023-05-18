@@ -1,0 +1,68 @@
+.wrapper {
+	position: relative;
+}
+
+.Form {
+	display: flex;
+	width: 620px;
+	position: relative;
+}
+.searchWrapper {
+	width: 100%;
+	flex-grow: 1;
+	position: relative;
+}
+.input {
+	height: 100%;
+	width: 100%;
+	padding: 0px 16px;
+	font-weight: 300;
+	font-size: 24px;
+	line-height: 32px;
+	color: #1b191c;
+	border: 0px;
+	outline: none;
+	box-sizing: border-box;
+}
+.input[type="search"] {
+	color: #a4a3a4;
+}
+.button {
+	border: 0px;
+	width: 96px;
+	height: 96px;
+	background-color: #f8d231;
+
+	cursor: pointer;
+}
+
+.errorImage {
+	position: absolute;
+	right: 80px;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.error {
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: -0.3px;
+	color: #c6a827;
+	position: absolute;
+	left: 0px;
+	bottom: -20px;
+}
+
+@media screen and (hover: hover) {
+	.button:hover {
+		background-color: #f6c900;
+		transition: 0.2s ease all;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	.Form {
+		width: 100%;
+	}
+}

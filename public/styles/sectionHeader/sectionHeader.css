@@ -1,0 +1,14 @@
+.sectionHeader {
+  margin: 0;
+  font-size: 48px;
+  line-height: 52px;
+  font-weight: 400;
+}
+@media screen and (max-width: 800px) {
+  .sectionHeader {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -0.4px;
+  }
+}/*# sourceMappingURL=sectionHeader.css.map */

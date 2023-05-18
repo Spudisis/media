@@ -1,0 +1,15 @@
+@import url("./normalize.css");
+@import url("./promoStyles/promoStyles.css");
+@import url("./sectionHeader/sectionHeader.css");
+@import url("./baseText/baseText.css");
+@import url("./termsText/termsText.css");
+@import url("./sectionWorks/sectionWorks.css");
+@import url("./infoBlock/infoBlock.css");
+@import url("./requirements/requirements.css");
+@import url("./details/details.css");
+
+* {
+	font-family: "Poppins", sans-serif;
+}
+
+/* 1240, 1080, 800, 600*/
