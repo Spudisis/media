@@ -1,0 +1,19 @@
+.terms {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+  color: #1b191c;
+}
+
+.terms_href {
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+}
+@media screen and (hover: hover) {
+  .terms_href:hover {
+    transition: 0.2s ease;
+    color: black;
+    text-decoration: underline;
+  }
+}/*# sourceMappingURL=termsText.css.map */
