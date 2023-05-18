@@ -9,6 +9,9 @@
 	cursor: pointer;
 	margin-bottom: 20px;
 }
+.back:focus-visible {
+	border: 1px solid black;
+}
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -54,6 +57,10 @@
 	display: flex;
 	justify-content: flex-start;
 	cursor: pointer;
+	width: auto;
+}
+.playStop:focus-visible {
+	border: 1px solid white;
 }
 
 .paramsAudio {

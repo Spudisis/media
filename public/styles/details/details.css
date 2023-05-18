@@ -21,6 +21,9 @@
   line-height: 32px;
   cursor: pointer;
 }
+.details_button:focus-visible {
+  border: 1px solid white;
+}
 
 .details_active {
   border-bottom: 1px solid white;

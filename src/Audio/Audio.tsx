@@ -4,7 +4,10 @@ import s from "./Audio.module.css";
 import pauseImg from "./assets/Play.svg";
 import playImg from "./assets/Pause.svg";
 
-export const Audio = ({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
+import { AudioStore } from "./store/store";
+import { observer } from "mobx-react";
+
+export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
 	const itemRef = React.useRef<HTMLAudioElement>(null);
 	const [statusLoading, setStatusLoading] = React.useState(true);
 	const [volume, setVolume] = React.useState(0.5);
@@ -12,15 +15,40 @@ export const Audio = ({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
 	const [isPlaying, setIsPlaying] = React.useState(false);
 	const [durationTime, setDurationTime] = React.useState("00:00");
 	const [statusNetwork, setStatusNetwork] = React.useState(0);
+	const [infinityDuration, setInfinityDuration] = React.useState(0);
+
+	React.useEffect(() => {
+		const ref = itemRef.current;
+		return () => {
+			if (ref) {
+				if (ref.duration === Infinity) {
+					AudioStore.nameAudio = href;
+					AudioStore.durationPrevHear = AudioStore.durationAll;
+				}
+				ref.src = "";
+			}
+		};
+	}, []);
+
+	React.useEffect(() => {
+		const keyDown = (e: KeyboardEvent) => {
+			if (e.key === "ArrowRight") {
+				changeDuration(String(currentTime + 1));
+			}
+		};
+		document.addEventListener("keydown", keyDown);
+		return () => {
+			document.removeEventListener("keydown", keyDown);
+		};
+	}, [currentTime]);
+
 	React.useEffect(() => {
 		if (itemRef.current) itemRef.current.volume = volume;
 	}, [volume]);
 
 	React.useEffect(() => {
-		const min = Math.floor(currentTime / 60) < 10 ? `0${Math.floor(currentTime / 60)}` : Math.floor(currentTime / 60);
-		const sec = Math.floor(currentTime % 60) < 10 ? `0${Math.floor(currentTime % 60)}` : Math.floor(currentTime % 60);
-		setDurationTime(`${min}:${sec}`);
-	}, [currentTime]);
+		calcDurationString(currentTime);
+	}, [currentTime, infinityDuration]);
 
 	React.useEffect(() => {
 		const interval = setInterval(() => {
@@ -28,26 +56,41 @@ export const Audio = ({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
 			setStatusNetwork(itemRef.current?.networkState || 1);
 			setCurrentTime(nowCurrentTime);
 		}, 100);
-		if (itemRef.current) {
-			if (isPlaying) {
-				itemRef.current.play();
+		const ref = itemRef.current;
+		if (ref) {
+			if (ref.duration === Infinity) {
+				ref.addEventListener("progress", checkTimeStamp);
 			}
-			if (!isPlaying) itemRef.current.pause();
+			if (isPlaying) ref.play();
+			if (!isPlaying) ref.pause();
 		}
-		return () => clearInterval(interval);
+		return () => {
+			clearInterval(interval);
+			if (ref) {
+				ref.removeEventListener("progress", checkTimeStamp);
+			}
+		};
 	}, [isPlaying]);
 
+	const checkTimeStamp = (e: ProgressEvent<EventTarget>) => {
+		const sec = AudioStore.calcDuration(e.timeStamp, href);
+		AudioStore.durationAll = e.timeStamp;
+
+		setInfinityDuration(sec - 1);
+	};
+
+	const calcDurationString = (currentTime: number) => {
+		const time = AudioStore.durationString(currentTime);
+		setDurationTime(time);
+	};
+
 	const playAudio = () => {
-		if (itemRef.current) {
-			setIsPlaying(!isPlaying);
-		}
+		setIsPlaying(!isPlaying);
 	};
 
 	const changeVolume = (e: string) => {
-		if (itemRef.current) {
-			const levelVolume = Number(e);
-			setVolume(levelVolume);
-		}
+		const levelVolume = Number(e);
+		setVolume(levelVolume);
 	};
 
 	const changeDuration = (e: string) => {
@@ -58,14 +101,10 @@ export const Audio = ({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
 			itemRef.current.currentTime = currentTime;
 		}
 	};
-	const calculatePercentage = (number: number, All: number) => {
-		const percent = (All / number) * 100;
-		return percent;
-	};
 
 	return (
 		<div className={s.wrapper}>
-			<button className={s.back} onClick={() => setStatusAudio(false)}>
+			<button className={s.back} onClick={() => setStatusAudio(false)} tabIndex={1}>
 				← Back
 			</button>
 			<div className={s.player}>
@@ -84,30 +123,40 @@ export const Audio = ({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
 					onLoadedData={() => {
 						setStatusLoading(false);
 					}}
+					onWaiting={() => {
+						setStatusLoading(true);
+					}}
 				></audio>
-				<button className={s.playStop} onClick={() => playAudio()} disabled={statusLoading}>
+				<button className={s.playStop} onClick={() => playAudio()} tabIndex={2}>
 					<img src={isPlaying ? playImg : pauseImg} alt={isPlaying ? "play" : "pause"} />
 				</button>
 				<input
+					tabIndex={3}
 					className={s.changeCurrentTime}
 					type="range"
 					min={0}
-					max={itemRef.current ? (itemRef.current?.duration === Infinity ? 1 : itemRef.current?.duration) : 1}
-					value={itemRef.current?.duration === Infinity ? 1 : currentTime}
-					disabled={statusLoading || itemRef.current?.duration === Infinity}
+					max={
+						itemRef.current
+							? itemRef.current?.duration === Infinity
+								? infinityDuration
+								: itemRef.current?.duration || 1
+							: 1
+					}
+					value={currentTime}
 					step={0.01}
 					onChange={(e) => changeDuration(e.target.value)}
 					style={{
 						background: `linear-gradient(to right, white 0%, white ${
-							itemRef.current ? calculatePercentage(itemRef.current.duration, currentTime) : 0
+							itemRef.current ? AudioStore.calculatePercentage(itemRef.current.duration, currentTime) : 0
 						}%, #ADACAD ${
-							itemRef.current ? calculatePercentage(itemRef.current.duration, currentTime) : 0
+							itemRef.current ? AudioStore.calculatePercentage(itemRef.current.duration, currentTime) : 0
 						}%, #ADACAD 100%)`,
 					}}
 				/>
 				<div className={s.paramsAudio}>
 					<span>{durationTime}</span>
 					<input
+						tabIndex={4}
 						className={s.changeVolume}
 						type="range"
 						min={0}
@@ -125,4 +174,4 @@ export const Audio = ({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
 			</div>
 		</div>
 	);
-};
+});

@@ -1,13 +1,13 @@
-import React, { ChangeEvent, MouseEvent } from "react";
+import React, { ChangeEvent } from "react";
 import s from "./Form.module.css";
 import errorImage from "./assets/errorImage.svg";
 import Union from "./assets/Union.svg";
-
 import { FormType } from "./Form.types";
 import { HeadSection } from "../HeadSection";
 import { HistoryStore } from "./store";
 import { History } from "./components";
 import { observer } from "mobx-react";
+
 export const Form = observer(({ setStatusAudio, value, setValue, errStatus, setErrStatus }: FormType) => {
 	const { history } = HistoryStore;
 	const searchWrapperRef = React.useRef<HTMLDivElement>(null);

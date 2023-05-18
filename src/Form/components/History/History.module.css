@@ -34,6 +34,10 @@
 	cursor: pointer;
 }
 
+.buttonSearch:focus-visible {
+	border: 1px solid black;
+}
+
 @media screen and (hover: hover) {
 	.buttonSearch:hover {
 		transition: 0.2s ease;
