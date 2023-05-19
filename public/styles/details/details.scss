@@ -8,6 +8,10 @@
 		display: grid;
 		grid-template-columns: repeat(2, auto);
 	}
+	@media screen and (max-width: 400px) {
+		display: grid;
+		grid-template-columns: 60% 40%;
+	}
 }
 .details_button {
 	color: white;
@@ -17,6 +21,7 @@
 	font-weight: 400;
 	font-size: 24px;
 	line-height: 32px;
+	letter-spacing: -0.4px;
 	cursor: pointer;
 	&:focus-visible {
 		border: 1px solid white;
