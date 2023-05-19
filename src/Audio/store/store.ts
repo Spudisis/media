@@ -9,6 +9,9 @@ class Audio {
 	//общее время дл записи, после ухода с плеера
 	durationAll = 0;
 
+	playerNumber = 1;
+	isPlaying = false;
+
 	calcDuration(sec: number, href: string) {
 		if (this.nameAudio === href) return Math.floor((sec - this.durationPrevHear) / 1000);
 		return Math.floor(sec / 1000);

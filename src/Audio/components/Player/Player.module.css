@@ -1,0 +1,116 @@
+
+.player {
+	width: 620px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 20px;
+	box-sizing: border-box;
+	height: 200px;
+	background-color: #cfd3d6;
+	position: relative;
+	overflow: hidden;
+}
+@keyframes slide {
+	0% {
+		left: -300px;
+	}
+
+	100% {
+		left: 2020px;
+	}
+}
+.loader {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 5px;
+	width: 200px;
+	background-color: white;
+
+	animation: 1s linear slide running infinite;
+}
+
+.playStop {
+	background-color: rgba(255, 255, 255, 0);
+	outline: none;
+	border: 0px;
+	display: flex;
+	justify-content: flex-start;
+	cursor: pointer;
+	width: auto;
+}
+.playStop:focus-visible {
+	border: 1px solid white;
+}
+
+.paramsAudio {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.changeVolume {
+	width: 250px;
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+
+	height: 1px;
+}
+
+.changeVolume::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	margin-top: 0px;
+	background-color: black;
+	height: 12px;
+	width: 16px;
+}
+.changeVolume::-moz-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	margin-top: 0px;
+	background-color: black;
+	height: 12px;
+	width: 16px;
+}
+
+.changeCurrentTime {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+
+	height: 1px;
+}
+.changeCurrentTime::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	margin-top: 0px;
+	background-color: white;
+	border-radius: 6px;
+	height: 12px;
+	width: 16px;
+}
+.changeCurrentTime::-moz-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	margin-top: 0px;
+	border-radius: 6px;
+	background-color: white;
+	height: 12px;
+	width: 16px;
+}
+
+@media screen and (max-width: 1080px) {
+	.player {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 600px) {
+	.changeVolume {
+		width: auto;
+	}
+}
