@@ -16,6 +16,7 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 	const [durationTime, setDurationTime] = React.useState("00:00");
 	const [statusNetwork, setStatusNetwork] = React.useState(0);
 	const [infinityDuration, setInfinityDuration] = React.useState(0);
+	const refInput = React.useRef(false);
 
 	React.useEffect(() => {
 		const ref = itemRef.current;
@@ -32,7 +33,7 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 
 	React.useEffect(() => {
 		const keyDown = (e: KeyboardEvent) => {
-			if (e.key === "ArrowRight") {
+			if (e.key === "ArrowRight" && refInput.current) {
 				changeDuration(String(currentTime + 1));
 			}
 		};
@@ -134,6 +135,8 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 					className={s.changeCurrentTime}
 					type="range"
 					min={0}
+					onFocus={() => (refInput.current = true)}
+					onBlur={() => (refInput.current = false)}
 					max={
 						itemRef.current
 							? itemRef.current?.duration === Infinity
