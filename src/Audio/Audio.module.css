@@ -17,3 +17,9 @@
 	flex-direction: column;
 	align-items: flex-start;
 }
+
+.grid {
+	width: 100%;
+	display: grid;
+	grid-row-gap: 20px;
+}

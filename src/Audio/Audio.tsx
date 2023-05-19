@@ -15,7 +15,7 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 			<button className={s.back} onClick={() => setStatusAudio(false)} tabIndex={1}>
 				← Back
 			</button>
-			<>
+			<div className={s.grid}>
 				{mas.map((_, index) => (
 					<Player
 						key={_}
@@ -27,7 +27,7 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 						isPlaying={isPlaying && AudioStore.playerNumber === index}
 					/>
 				))}
-			</>
+			</div>
 		</div>
 	);
 });
