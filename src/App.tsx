@@ -6,6 +6,7 @@ function App() {
 	const [errStatus, setErrStatus] = React.useState(false);
 	const [value, setValue] = React.useState("");
 	const [statusAudio, setStatusAudio] = React.useState(false);
+	const [codeErr, setCodeErr] = React.useState(0);
 
 	React.useEffect(() => {
 		setErrStatus(false);
@@ -20,9 +21,11 @@ function App() {
 					setValue={setValue}
 					setErrStatus={setErrStatus}
 					errStatus={errStatus}
+					setCodeErr={setCodeErr}
+					codeErr={codeErr}
 				/>
 			) : (
-				<Audio setStatusAudio={setStatusAudio} href={value} setErrStatus={setErrStatus} />
+				<Audio setStatusAudio={setStatusAudio} setCodeErr={setCodeErr} href={value} setErrStatus={setErrStatus} />
 			)}
 		</>
 	);

@@ -9,15 +9,16 @@ export const History = observer(({ validate }: HistoryProp) => {
 	return (
 		<ul className={s.list}>
 			{history.map((elem) => (
-				<li
-					className={s.itemList}
-					key={elem}
-					onClick={() => {
-						console.log(elem);
-						validate(elem);
-					}}
-				>
-					<button className={s.buttonSearch}>{elem}</button>
+				<li className={s.itemList} key={elem}>
+					<button
+						onClick={() => {
+							console.log(elem);
+							validate(elem);
+						}}
+						className={s.buttonSearch}
+					>
+						{elem}
+					</button>
 				</li>
 			))}
 		</ul>

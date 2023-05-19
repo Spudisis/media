@@ -4,4 +4,6 @@ export type FormType = {
 	setValue: (s: string) => void;
 	setErrStatus: (b: boolean) => void;
 	errStatus: boolean;
+	codeErr: number;
+	setCodeErr: (n: number) => void;
 };

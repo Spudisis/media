@@ -1,5 +1,6 @@
 .wrapper {
 	position: relative;
+	margin-bottom: 40px;
 }
 
 .Form {
@@ -61,8 +62,11 @@
 	}
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1090px) {
 	.Form {
 		width: 100%;
+	}
+	.wrapper {
+		margin-bottom: 0px;
 	}
 }

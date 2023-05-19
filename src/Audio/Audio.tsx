@@ -7,7 +7,7 @@ import { TypesAuto } from "./Audio.types";
 import { Player } from "./components";
 import { AudioStore } from "./store";
 
-export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto) => {
+export const Audio = observer(({ href, setStatusAudio, setErrStatus, setCodeErr }: TypesAuto) => {
 	const [isPlaying, setIsPlaying] = React.useState(false);
 	const mas = ["first", "second"];
 	return (
@@ -24,6 +24,7 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 						setErrStatus={setErrStatus}
 						setIsPlaying={setIsPlaying}
 						numberPlayer={index}
+						setCodeErr={setCodeErr}
 						isPlaying={isPlaying && AudioStore.playerNumber === index}
 					/>
 				))}

@@ -9,7 +9,7 @@ import { observer } from "mobx-react";
 import { PlayerType } from "./Player.types";
 
 export const Player = observer(
-	({ href, setStatusAudio, setErrStatus, isPlaying, setIsPlaying, numberPlayer }: PlayerType) => {
+	({ href, setStatusAudio, setErrStatus, isPlaying, setIsPlaying, numberPlayer, setCodeErr }: PlayerType) => {
 		const itemRef = React.useRef<HTMLAudioElement>(null);
 		const [statusLoading, setStatusLoading] = React.useState(true);
 		const [volume, setVolume] = React.useState(0.1);
@@ -114,6 +114,7 @@ export const Player = observer(
 					src={href}
 					ref={itemRef}
 					onError={() => {
+						setCodeErr(400);
 						setErrStatus(true);
 						setStatusAudio(false);
 					}}
