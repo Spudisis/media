@@ -17,6 +17,8 @@ export const Player = observer(
 		const [durationTime, setDurationTime] = React.useState("00:00");
 		const [statusNetwork, setStatusNetwork] = React.useState(0);
 		const [infinityDuration, setInfinityDuration] = React.useState(0);
+		const [readyToPlay, setReadyToPlay] = React.useState(false);
+
 		const refInput = React.useRef(false);
 
 		React.useEffect(() => {
@@ -86,11 +88,12 @@ export const Player = observer(
 		};
 
 		const playAudio = () => {
-		
-			if (AudioStore.playerNumber !== numberPlayer) {
-				AudioStore.playerNumber = numberPlayer;
+			if (readyToPlay) {
+				if (AudioStore.playerNumber !== numberPlayer) {
+					AudioStore.playerNumber = numberPlayer;
+				}
+				setIsPlaying(!isPlaying);
 			}
-			setIsPlaying(!isPlaying);
 		};
 
 		const changeVolume = (e: string) => {
@@ -123,6 +126,7 @@ export const Player = observer(
 						setCurrentTime(itemRef.current?.duration || currentTime);
 					}}
 					onLoadedData={() => {
+						setReadyToPlay(true);
 						setStatusLoading(false);
 					}}
 					onWaiting={() => {
