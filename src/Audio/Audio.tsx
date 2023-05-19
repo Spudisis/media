@@ -23,8 +23,8 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 			if (ref) {
 				if (ref.duration === Infinity) {
 					AudioStore.nameAudio = href;
-					AudioStore.durationPrevHear = AudioStore.durationAll;
 				}
+				AudioStore.durationPrevHear = AudioStore.durationAll;
 				ref.src = "";
 			}
 		};
@@ -58,9 +58,8 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 		}, 100);
 		const ref = itemRef.current;
 		if (ref) {
-			if (ref.duration === Infinity) {
-				ref.addEventListener("progress", checkTimeStamp);
-			}
+			ref.addEventListener("progress", checkTimeStamp);
+
 			if (isPlaying) ref.play();
 			if (!isPlaying) ref.pause();
 		}
