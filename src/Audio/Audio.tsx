@@ -18,6 +18,7 @@ export const Audio = observer(({ href, setStatusAudio, setErrStatus }: TypesAuto
 			<>
 				{mas.map((_, index) => (
 					<Player
+						key={_}
 						href={href}
 						setStatusAudio={setStatusAudio}
 						setErrStatus={setErrStatus}
