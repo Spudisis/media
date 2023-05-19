@@ -33,7 +33,7 @@ class History {
 
 		if (found.length > 0) {
 			const filter = this.history.filter((elem) => elem !== value);
-			console.log(filter);
+
 			localStorage.setItem("history", JSON.stringify([value, ...filter]));
 			return this.getHistory();
 		}

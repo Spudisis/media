@@ -32,7 +32,6 @@ export const Form = observer(
 		}, []);
 
 		const validate = (value: string) => {
-		
 			const RegExp =
 				/^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
 
@@ -73,9 +72,8 @@ export const Form = observer(
 					</button>
 
 					{errStatus && <img className={s.errorImage} src={errorImage} alt="error" />}
+					{errStatus && <div className={s.error}>{ERRORS[codeErr]}</div>}
 				</form>
-
-				{errStatus && <div className={s.error}>{ERRORS[codeErr]}</div>}
 			</div>
 		);
 	}
