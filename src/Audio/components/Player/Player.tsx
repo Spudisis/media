@@ -86,7 +86,7 @@ export const Player = observer(
 		};
 
 		const playAudio = () => {
-			console.log(isPlaying);
+		
 			if (AudioStore.playerNumber !== numberPlayer) {
 				AudioStore.playerNumber = numberPlayer;
 			}

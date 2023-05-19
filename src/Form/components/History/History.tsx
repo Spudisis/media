@@ -12,7 +12,7 @@ export const History = observer(({ validate }: HistoryProp) => {
 				<li className={s.itemList} key={elem}>
 					<button
 						onClick={() => {
-							console.log(elem);
+							
 							validate(elem);
 						}}
 						className={s.buttonSearch}

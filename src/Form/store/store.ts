@@ -22,18 +22,18 @@ class History {
 	}
 	setHistory(value: string) {
 		const res = this.checkHistory(value);
-		console.log(res);
+
 		if (res) {
-			console.log(value, this.history);
 			localStorage.setItem("history", JSON.stringify([value, ...this.history.slice(0, 3)]));
 			this.getHistory();
 		}
 	}
 	checkHistory(value: string) {
 		const found = this.history.filter((elem) => elem === value);
-		console.log(found);
+
 		if (found.length > 0) {
-			return false;
+			const filter = this.history.filter((elem) => elem !== value);
+			localStorage.setItem("history", JSON.stringify([value, ...filter]));
 		}
 		return true;
 	}
