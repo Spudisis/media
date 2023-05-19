@@ -1,6 +1,9 @@
 .wrapper {
 	position: relative;
 	margin-bottom: 40px;
+	width: 100%;
+	display: grid;
+	justify-content: center;
 }
 
 .Form {
@@ -68,5 +71,6 @@
 	}
 	.wrapper {
 		margin-bottom: 0px;
+		display: block;
 	}
 }
