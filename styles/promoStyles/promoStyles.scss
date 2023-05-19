@@ -8,7 +8,7 @@
 	grid-template-rows: repeat(3, 1fr);
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
-	@media screen and (max-width: 1080px) {
+	@media screen and (max-width: 1090px) {
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(4, auto);
 	}
@@ -29,14 +29,14 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	@media screen and (max-width: 1080px) {
+	@media screen and (max-width: 1090px) {
 		grid-area: 1 / 1 / 2 / 2;
 	}
 }
 .promoStyles-itemGrid_text {
 	margin-top: 24px;
 	grid-area: 2 / 1 / 3 / 2;
-	@media screen and (max-width: 1080px) {
+	@media screen and (max-width: 1090px) {
 		grid-area: 3 / 1 / 4 / 2;
 		margin-bottom: 12px;
 		margin-top: 0px;
@@ -48,21 +48,22 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	@media screen and (max-width: 1080px) {
+	@media screen and (max-width: 1090px) {
 		grid-area: 4 / 1 / 5 / 2;
 	}
 }
 
 .promoStyles-itemGrid_form {
 	grid-area: 1 / 2 / 4 / 3;
-	@media screen and (max-width: 1080px) {
+
+	@media screen and (max-width: 1090px) {
 		grid-area: 2 / 1 / 3 / 2;
 	}
 	& > div {
 		display: flex;
 		align-items: center;
 		height: 100%;
-		@media screen and (max-width: 1080px) {
+		@media screen and (max-width: 1090px) {
 			margin: 40px 0px;
 			display: block;
 		}
